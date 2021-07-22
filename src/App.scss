@@ -1,1 +1,11 @@
 @import "./resetStyles/reset";
+
+.App {
+    background: #e7efec;
+}
+
+.container {
+    max-width: 1140px;
+    padding: 0 10px;
+    margin: 0 auto;
+}
