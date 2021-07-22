@@ -1,0 +1,43 @@
+.header {
+    background: #1eb7ee;
+
+    &__container {
+        max-width: 1920px;
+        padding: 0 25px;
+    }
+
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 92px;
+    }
+}
+
+.logo {
+    display: block;
+    width: 180px;
+    height: 68px;
+}
+
+.navigation {
+    flex-grow: 1;
+    max-width: 70%;
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__link {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: .6px;
+    }
+}
