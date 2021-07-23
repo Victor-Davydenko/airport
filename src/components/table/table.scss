@@ -47,6 +47,19 @@
         }
     }
 
+    .terminal {
+        color: #63c745;
+        font-weight: 700;
+        border: 1px solid #63c745;
+        border-radius: 50%;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 35px;
+        font-size: 22px;
+    }
+
     .company {
         line-height: 72px;
     }

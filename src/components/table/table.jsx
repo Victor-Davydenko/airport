@@ -19,7 +19,9 @@ const Table = () => {
         </thead>
         <tbody>
           <tr>
-            <td>А</td>
+            <td>
+              <span className='terminal'>А</span>
+            </td>
             <td>2:00</td>
             <td>Анталія</td>
             <td>Вилетів о 2:13</td>
@@ -33,7 +35,9 @@ const Table = () => {
             </td>
           </tr>
           <tr>
-            <td>А</td>
+            <td>
+              <span className='terminal'>А</span>
+            </td>
             <td>2:00</td>
             <td>Анталія</td>
             <td>Вилетів о 2:13</td>
