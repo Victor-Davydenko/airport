@@ -6,6 +6,7 @@ import Header from './components/header';
 import SearchField from './components/search';
 import Filter from './components/filter';
 import Table from "./components/table";
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Filter />
         <Table />
       </div>
+      <Footer />
     </div>
   );
 }
