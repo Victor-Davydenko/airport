@@ -11,3 +11,26 @@
     margin: 0 auto;
     flex-grow: 1;
 }
+
+.social-icons {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: space-between;
+
+    &__link {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+    }
+
+    svg {
+        fill: #ffffff;
+        transition: all .3s ease-in-out;
+    }
+
+    svg:hover {
+        fill: #b8b9b9;
+    }
+}
