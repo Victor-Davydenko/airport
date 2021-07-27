@@ -1,0 +1,21 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": ["airbnb/base", "react-app", "react-app/jest"],
+  "rules": {
+    "linebreak-style": 0,
+    "arrow-body-style": "off",
+    "indent": [2,"tab"],
+    "max-len": ["error", 150, {"ignoreUrls": true}],
+    "no-duplicate-imports": "error",
+    "import/extensions": "off",
+    "import/no-unresolved": "off",
+    "no-tabs": "off",
+    "no-mixed-spaces-and-tabs": "off",
+    "no-underscore-dangle": "off",
+    "no-return-await": "off"
+  }
+}
