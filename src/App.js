@@ -10,13 +10,13 @@ import Footer from './components/footer';
 
 function App() {
 	useEffect(() => {
-		const body = document.querySelector('body')
+		const body = document.querySelector('body');
 		body.addEventListener('mousemove', () => {
 			body.classList.add('mouse-used');
 		});
 
 		body.addEventListener('keyup', (e) => {
-			if(e.code === 'Tab') {
+			if (e.code === 'Tab') {
 				if (body.classList.contains('mouse-used')) {
 					body.classList.remove('mouse-used');
 				}
