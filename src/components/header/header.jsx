@@ -2,6 +2,7 @@ import React from 'react';
 
 import './header.scss';
 import logo from '../../images/logo@2x.webp'
+import MainNavigation from "../navigation";
 
 const Header = () => {
   return (
@@ -11,25 +12,7 @@ const Header = () => {
           <a href="/" className="logo">
             <img src={logo} alt="logo"/>
           </a>
-          <nav className="navigation">
-            <ul className="navigation__list">
-              <li className="navigation__list-item">
-                <a href="#" className="navigation__link">Пасажирам</a>
-              </li>
-              <li className="navigation__list-item">
-                <a href="#" className="navigation__link">Послуги IEV</a>
-              </li>
-              <li className="navigation__list-item">
-                <a href="#" className="navigation__link">VIP</a>
-              </li>
-              <li className="navigation__list-item">
-                <a href="#" className="navigation__link">Партнерам</a>
-              </li>
-              <li className="navigation__list-item">
-                <a href="#" className="navigation__link">Прес-центр</a>
-              </li>
-            </ul>
-          </nav>
+          <MainNavigation />
         </div>
       </div>
     </header>

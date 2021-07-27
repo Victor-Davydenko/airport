@@ -1,7 +1,8 @@
-@import "./resetStyles/reset";
+@import "styles/reset";
+@import "styles/variables";
 
 .App {
-    background: #e7efec;
+    background: $mainBackground;
     min-height: 100vh;
 }
 
@@ -19,18 +20,19 @@
     margin: 0;
     justify-content: space-between;
 
-    &__link {
-        display: inline-block;
-        width: 30px;
-        height: 30px;
-    }
-
     svg {
-        fill: #ffffff;
+        fill: $white;
         transition: all .3s ease-in-out;
     }
 
     svg:hover {
-        fill: #b8b9b9;
+        fill: $darkGrey;
     }
 }
+
+.social-icons__link {
+    display: inline-block;
+    width: $socialIconWidth;
+    height: $socialIconHeight;
+}
+
