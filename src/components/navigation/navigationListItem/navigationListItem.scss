@@ -1,0 +1,9 @@
+@import "../../../styles/variables";
+
+.navigation__link {
+    color: $white;
+    text-decoration: none;
+    font-size: $mediumFontSize;
+    font-weight: bold;
+    letter-spacing: .6px;
+}

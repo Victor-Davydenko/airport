@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .table-wrapper {
     padding: 0;
 }
@@ -8,12 +10,12 @@
     border-collapse: collapse;
 
     thead {
-        background: #ffffff;
+        background: $white;
 
         tr {
             height: 48px;
-            color: #95989a;
-            font-size: 16px;
+            color: $darkGrey;
+            font-size: $baseFontSize;
             font-weight: 600;
         }
     }
@@ -28,8 +30,8 @@
             display: inline-block;
             transition: all .3s ease-in-out;
             text-decoration: none;
-            color: #1eb7ee;
-            font-size: 18px;
+            color: $darkBlue;
+            font-size: $mediumFontSize;
             line-height: 25px;
             position: relative;
         }
@@ -39,7 +41,7 @@
         }
 
         tr:nth-child(even) {
-            background: #ffffff;
+            background: $white;
         }
 
         tr:nth-child(odd) {
@@ -48,16 +50,16 @@
     }
 
     .terminal {
-        color: #63c745;
+        color: $green;
         font-weight: 700;
-        border: 1px solid #63c745;
+        border: 1px solid $green;
         border-radius: 50%;
         display: inline-block;
         width: 40px;
         height: 40px;
         text-align: center;
         line-height: 35px;
-        font-size: 22px;
+        font-size: $mediumFontSize;
     }
 
     .company {
@@ -66,9 +68,9 @@
 
     .image {
         display: inline-block;
-        width: 64px;
-        height: 38px;
-        margin-right: 5px;
+        width: $companyLogoWidth;
+        height: $companyLogoHeight;
+        margin-right: $smallSpace;
         vertical-align: middle;
     }
 }
