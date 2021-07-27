@@ -1,0 +1,38 @@
+@import "styles/reset";
+@import "styles/variables";
+
+.App {
+    background: $mainBackground;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1140px;
+    padding: 0 10px;
+    margin: 0 auto;
+    flex-grow: 1;
+}
+
+.social-icons {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: space-between;
+
+    svg {
+        fill: $white;
+        transition: all .3s ease-in-out;
+    }
+
+    svg:hover {
+        fill: $darkGrey;
+    }
+}
+
+.social-icons__link {
+    display: inline-block;
+    width: $socialIconWidth;
+    height: $socialIconHeight;
+}
+

@@ -1,0 +1,23 @@
+@import "../../styles/variables";
+
+.header {
+    background: $darkBlue;
+}
+
+.header__container {
+    max-width: 1920px;
+    padding: 0 $semiLargeSpace;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 92px;
+}
+
+.logo {
+    display: block;
+    width: 180px;
+    height: 68px;
+}

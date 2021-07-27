@@ -1,0 +1,80 @@
+@import "../../styles/variables";
+
+.table-wrapper {
+    padding: 0;
+}
+
+.table {
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+
+    thead {
+        background: $white;
+
+        tr {
+            height: 48px;
+            color: $darkGrey;
+            font-size: $baseFontSize;
+            font-weight: 600;
+        }
+    }
+
+    tbody {
+        tr {
+            height: 72px;
+        }
+
+        .table__link {
+            opacity: 0;
+            display: inline-block;
+            transition: all .3s ease-in-out;
+            text-decoration: none;
+            color: $darkBlue;
+            font-size: $mediumFontSize;
+            line-height: 25px;
+            position: relative;
+        }
+
+        tr:hover .table__link {
+           opacity: 1;
+        }
+
+        tr:nth-child(even) {
+            background: $white;
+        }
+
+        tr:nth-child(odd) {
+            background: rgba(0,102,135,.1);
+        }
+    }
+
+    .terminal {
+        color: $green;
+        font-weight: 700;
+        border: 1px solid $green;
+        border-radius: 50%;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+        line-height: 35px;
+        font-size: $mediumFontSize;
+    }
+
+    .company {
+        line-height: 72px;
+    }
+
+    .image {
+        display: inline-block;
+        width: $companyLogoWidth;
+        height: $companyLogoHeight;
+        margin-right: $smallSpace;
+        vertical-align: middle;
+    }
+}
+
+td {
+    text-align: center;
+}
