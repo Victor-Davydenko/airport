@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc7504e9-781d-4b29-987a-724177ac32da" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/filter/filter.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter/filter.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/filter/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/filter/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/footer/footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/footer/footer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/footer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/footer/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/header/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/header/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/navigation/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/navigation/navigation.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/navigation.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/navigation/navigationLinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/navigationLinks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/navigation/navigationListItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/navigationListItem/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/navigation/navigationListItem/navigationListItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/navigationListItem/navigationListItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/search/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/search/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/search/search.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/search/search.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/spinner/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/spinner/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/spinner/spinner.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/spinner/spinner.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/table/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/table/table.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/table/table.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reportWebVitals.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/httpService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/httpService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/service/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -45,8 +21,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+            <state relative-caret-position="136">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -72,8 +48,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-454">
-              <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+            <state relative-caret-position="192">
+              <caret line="58" column="6" lean-forward="true" selection-start-line="58" selection-start-column="6" selection-end-line="58" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -131,7 +107,6 @@
         <option value="$PROJECT_DIR$/src/service/index.js" />
         <option value="$PROJECT_DIR$/src/reportWebVitals.js" />
         <option value="$PROJECT_DIR$/src/components/filter/index.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/components/filter/filter.jsx" />
         <option value="$PROJECT_DIR$/src/components/footer/footer.jsx" />
         <option value="$PROJECT_DIR$/src/components/footer/index.js" />
@@ -151,6 +126,7 @@
         <option value="$PROJECT_DIR$/src/service/httpService.js" />
         <option value="$PROJECT_DIR$/.eslintrc" />
         <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -239,13 +215,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="65926000" />
+    <option name="totallyTimeSpent" value="66097000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.24962853" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4978903" visible="true" weight="0.24962853" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Learn" order="3" />
@@ -261,7 +237,7 @@
       <window_info anchor="bottom" id="GraphQL" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.38474026" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.38474026" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -569,15 +545,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+        <state relative-caret-position="136">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-454">
-          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
+        <state relative-caret-position="192">
+          <caret line="58" column="6" lean-forward="true" selection-start-line="58" selection-start-column="6" selection-end-line="58" selection-end-column="6" />
         </state>
       </provider>
     </entry>

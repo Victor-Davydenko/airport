@@ -16,7 +16,7 @@ function App() {
 		});
 
 		body.addEventListener('keyup', (e) => {
-			if (e.code === 'Tab') {
+			if(e.code === 'Tab') {
 				if (body.classList.contains('mouse-used')) {
 					body.classList.remove('mouse-used');
 				}
