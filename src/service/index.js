@@ -1,3 +1,3 @@
-import httpService from "./httpService";
+import httpService from './httpService';
 
-export default httpService
+export default httpService;
