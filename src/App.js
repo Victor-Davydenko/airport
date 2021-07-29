@@ -12,7 +12,6 @@ function App() {
 	const [state, setState] = useState({
 		flightDirection: 'arrivals',
 		chosenDate: new Date(),
-		activeDate: new Date().toLocaleDateString().slice(0, 10).replace(/\./g, '-'),
 		isYesterdayPicked: false,
 		isTodayPicked: true,
 		isTomorrowPicked: false,
@@ -100,6 +99,7 @@ function App() {
 		isTomorrowPicked,
 		isYesterdayPicked,
 	};
+
 	return (
 		<div className="App">
 			<Header />
