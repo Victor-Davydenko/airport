@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import './table.scss';
 
-const Table = () => {
+const Table = ({ searchValue, flightDirection, activeDate }) => {
 	return (
 		<div className="table-wrapper">
 			<table className="table">

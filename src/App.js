@@ -10,6 +10,7 @@ import Footer from './components/footer';
 
 function App() {
 	const [state, setState] = useState({
+		searchValue: '',
 		flightDirection: 'arrivals',
 		chosenDate: new Date(),
 		activeDate: new Date().toLocaleDateString().slice(0, 10).replace(/\./g, '-'),
@@ -19,15 +20,18 @@ function App() {
 	});
 
 	const {
+		searchValue,
 		flightDirection,
 		chosenDate,
 		isYesterdayPicked,
 		isTodayPicked,
 		isTomorrowPicked,
 	} = state;
+
 	const today = moment(new Date())._d;
 	const tomorrow = moment(new Date()).add(1, 'days')._d;
 	const yesterday = moment(new Date()).add(-1, 'days')._d;
+
 	useEffect(() => {
 		const body = document.querySelector('body');
 		body.addEventListener('mousemove', () => {
@@ -42,6 +46,14 @@ function App() {
 			}
 		});
 	}, []);
+
+	const onFormSubmit = (e, searchValue) => {
+		e.preventDefault();
+		setState({
+			...state,
+			searchValue,
+		});
+	};
 	const chooseFlightDirection = (flightDirection) => {
 		setState({
 			...state,
@@ -86,6 +98,7 @@ function App() {
 			});
 		}
 	};
+
 	const activeDate = chosenDate.toLocaleDateString().slice(0, 10).replace(/\./g, '-');
 	const filterProps = {
 		chooseFlightDirection,
@@ -100,14 +113,16 @@ function App() {
 		isTomorrowPicked,
 		isYesterdayPicked,
 	};
+
 	return (
 		<div className="App">
 			<Header />
 			<div className="container">
-				<SearchField />
+				<SearchField onFormSubmit={onFormSubmit}/>
 				<Filter {...filterProps}/>
 				<Table activeDate={activeDate}
 							 flightDirection={flightDirection}
+							 searchValue={searchValue}
 				/>
 			</div>
 			<Footer />
