@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-import './table.scss';
+import './flightTable.scss';
 
-const Table = () => {
+const FlightTable = () => {
 	return (
 		<div className="table-wrapper">
-			<table className="table">
+			 <table className="table">
 				<thead>
 					<tr>
 						<th>Термінал</th>
@@ -43,7 +43,7 @@ const Table = () => {
 						<td>Вилетів о 2:13</td>
 						<td>
 							<span className="image"><img src="" alt=""/></span>
-              WizzAir
+			        WizzAir
 						</td>
 						<td>7W9235</td>
 						<td>
@@ -51,8 +51,8 @@ const Table = () => {
 						</td>
 					</tr>
 				</tbody>
-			</table>
+			 </table>
 		</div>
 	);
 };
-export default Table;
+export default FlightTable;
