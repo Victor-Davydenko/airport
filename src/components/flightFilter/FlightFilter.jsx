@@ -4,10 +4,10 @@ import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import './filter.scss';
+import './flightFilter.scss';
 import icon from '../../images/dateIcon.png';
 
-const Filter = ({
+const FlightFilter = ({
 	flightDirection,
 	chosenDate,
 	isYesterdayPicked,
@@ -67,4 +67,4 @@ const Filter = ({
 	);
 };
 
-export default Filter;
+export default FlightFilter;

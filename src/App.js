@@ -4,8 +4,8 @@ import './App.scss';
 
 import Header from './components/header';
 import SearchField from './components/search';
-import Filter from './components/filter';
-import Table from './components/table';
+import FlightFilter from './components/flightFilter';
+import FlightTable from './components/flightTable';
 import Footer from './components/footer';
 
 function App() {
@@ -105,9 +105,9 @@ function App() {
 			<Header />
 			<div className="container">
 				<SearchField />
-				<Filter {...filterProps}/>
-				<Table activeDate={activeDate}
-							 flightDirection={flightDirection}
+				<FlightFilter {...filterProps}/>
+				<FlightTable activeDate={activeDate}
+										 flightDirection={flightDirection}
 				/>
 			</div>
 			<Footer />

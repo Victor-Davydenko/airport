@@ -1,0 +1,10 @@
+@import "../../../styles/variables";
+
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+    font-size: 50px;
+    color: $red;
+}
