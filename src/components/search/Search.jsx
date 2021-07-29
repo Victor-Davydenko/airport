@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './search.scss';
+import Button from '../shared/button';
 
 const SearchField = () => {
 	return (
@@ -11,7 +12,10 @@ const SearchField = () => {
 					<div className="search__input-wrapper">
 						<input className="search__input" type="text" placeholder='Номер рейсу або місто' />
 					</div>
-					<button className='search__button' type='submit'>Знайти</button>
+					<Button className='search__button'
+						type='submit'
+						text='Знайти'
+					/>
 				</form>
 			</div>
 		</div>

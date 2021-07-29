@@ -1,3 +1,3 @@
-import NavigationListItem from './navigationListItem';
+import NavigationListItem from './NavigationListItem';
 
 export default NavigationListItem;

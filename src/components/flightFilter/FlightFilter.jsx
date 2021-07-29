@@ -3,10 +3,10 @@ import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
-import './filter.scss';
+import './flightFilter.scss';
 import icon from '../../images/dateIcon.png';
 
-const Filter = () => (
+const FlightFilter = () => (
 	<div className='filter'>
 		<div className="filter__row">
 			<ul className="filter__flights-list">
@@ -42,4 +42,4 @@ const Filter = () => (
 	</div>
 );
 
-export default Filter;
+export default FlightFilter;
