@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
-
+import React from 'react';
+import format from 'date-fns/format';
+import isToday from 'date-fns/isToday';
+import isYesterday from 'date-fns/isYesterday';
+import isTomorrow from 'date-fns/isTomorrow';
 import DatePicker from 'react-datepicker';
+import classNames from '../../utils';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -10,55 +14,43 @@ import icon from '../../images/dateIcon.png';
 const FlightFilter = ({
 	flightDirection,
 	chosenDate,
-	isYesterdayPicked,
-	isTodayPicked,
-	isTomorrowPicked,
-	today,
-	tomorrow,
-	yesterday,
 	chooseFlightDirection,
 	chooseDate,
-	pickDate,
 }) => {
-	const arrivalsClassNames = `filter__flights-list-item ${flightDirection === 'arrivals' ? 'filter__flights-list-item--active' : ''}`;
-	const departureClassNames = `filter__flights-list-item ${flightDirection === 'departure' ? 'filter__flights-list-item--active' : ''}`;
-	const yesterdayClassNames = `filter__date-list-item ${isYesterdayPicked ? 'filter__date-list-item--active' : ''}`;
-	const todayClassNames = `filter__date-list-item ${isTodayPicked ? 'filter__date-list-item--active' : ''}`;
-	const tomorrowClassNames = `filter__date-list-item ${isTomorrowPicked ? 'filter__date-list-item--active' : ''}`;
-	const formatDateToString = (date) => {
-		const day = date.toLocaleString().slice(0, 2);
-		const month = date.toLocaleString().slice(3, 5);
-		return `${day}/${month}`;
-	};
 	return (
 		<div className='filter'>
 			<div className="filter__row">
 				<ul className="filter__flights-list">
-					<li className={ departureClassNames } onClick={() => chooseFlightDirection('departure')}>
+					<li className={ classNames(['filter__flights-list-item',
+						flightDirection === 'departure' && 'filter__flights-list-item--active']) } onClick={() => chooseFlightDirection('departure')}>
 						<span>Виліт</span>
 					</li>
-					<li className={ arrivalsClassNames } onClick={() => chooseFlightDirection('arrivals')}>
+					<li className={ classNames(['filter__flights-list-item',
+						flightDirection === 'arrivals' && 'filter__flights-list-item--active']) } onClick={() => chooseFlightDirection('arrivals')}>
 						<span>Приліт</span>
 					</li>
 				</ul>
 			</div>
 			<div className="filter__row filter__date-row">
 				<div className="calendar">
-					<DatePicker selected={ chosenDate } onChange={(date) => chooseDate(date)}/>
+					<DatePicker selected={ chosenDate } onChange={(date) => chooseDate({ date })}/>
 					<img src={icon} alt="date-picker"/>
-					 <span className='calendar__date'>{formatDateToString(chosenDate)}</span>
+					 <span className='calendar__date'>{format(chosenDate, 'dd/MM')}</span>
 				</div>
 				 <ul className="filter__date-list">
-					<li className={yesterdayClassNames} onClick={() => pickDate('yesterday')}>
-						<span className="date">{formatDateToString(yesterday)}</span>
+					<li className={classNames(['filter__date-list-item',
+						isYesterday(chosenDate) && 'filter__date-list-item--active'])} onClick={() => chooseDate({ pickedDay: 'yesterday' })}>
+						<span className="date">{format(new Date(new Date().setDate(new Date().getDate() - 1)), 'dd/MM')}</span>
 						<span className="text">Вчора</span>
 					</li>
-					<li className={todayClassNames} onClick={() => pickDate('today')}>
-						<span className="date">{formatDateToString(today)}</span>
+					<li className={classNames(['filter__date-list-item',
+						isToday(chosenDate) && 'filter__date-list-item--active'])} onClick={() => chooseDate({ pickedDay: 'today' })}>
+						<span className="date">{format(new Date(), 'dd/MM')}</span>
 						<span className="text">Сьогодні</span>
 					</li>
-					<li className={tomorrowClassNames} onClick={() => pickDate('tomorrow')}>
-						<span className="date">{formatDateToString(tomorrow)}</span>
+					<li className={classNames(['filter__date-list-item',
+						isTomorrow(chosenDate) && 'filter__date-list-item--active'])} onClick={() => chooseDate({ pickedDay: 'tomorrow' })}>
+						<span className="date">{format(new Date(new Date().setDate(new Date().getDate() + 1)), 'dd/MM')}</span>
 						<span className="text">Завтра</span>
 					</li>
 				 </ul>
