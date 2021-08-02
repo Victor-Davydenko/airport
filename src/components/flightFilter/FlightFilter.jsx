@@ -3,6 +3,8 @@ import format from 'date-fns/format';
 import isToday from 'date-fns/isToday';
 import isYesterday from 'date-fns/isYesterday';
 import isTomorrow from 'date-fns/isTomorrow';
+import addDays from 'date-fns/addDays';
+import subDays from 'date-fns/subDays';
 import DatePicker from 'react-datepicker';
 import classNames from '../../utils';
 
@@ -15,19 +17,34 @@ import { today, tomorrow, yesterday } from '../../constants/constants';
 const FlightFilter = ({
 	flightDirection,
 	chosenDate,
-	chooseFlightDirection,
-	chooseDate,
+	setFlightDirection,
+	setChosenDate,
 }) => {
+	const chooseDate = (options) => {
+		const { date, pickedDay } = options;
+		if (date) {
+			setChosenDate(date);
+		}
+		if (pickedDay === 'yesterday') {
+			setChosenDate(subDays(today, 1));
+		}
+		if (pickedDay === 'today') {
+			setChosenDate(today);
+		}
+		if (pickedDay === 'tomorrow') {
+			setChosenDate(addDays(today, 1));
+		}
+	};
 	return (
 		<div className='filter'>
 			<div className="filter__row">
 				<ul className="filter__flights-list">
 					<li className={ classNames(['filter__flights-list-item',
-						flightDirection === 'departure' && 'filter__flights-list-item--active']) } onClick={() => chooseFlightDirection('departure')}>
+						flightDirection === 'departure' && 'filter__flights-list-item--active']) } onClick={() => setFlightDirection('departure')}>
 						<span>Виліт</span>
 					</li>
 					<li className={ classNames(['filter__flights-list-item',
-						flightDirection === 'arrivals' && 'filter__flights-list-item--active']) } onClick={() => chooseFlightDirection('arrivals')}>
+						flightDirection === 'arrivals' && 'filter__flights-list-item--active']) } onClick={() => setFlightDirection('arrivals')}>
 						<span>Приліт</span>
 					</li>
 				</ul>
