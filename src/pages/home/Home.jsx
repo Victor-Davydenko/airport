@@ -8,14 +8,11 @@ import { today } from '../../constants/constants';
 const HomePage = () => {
 	const [flightDirection, setFlightDirection] = useState('arrivals');
 	const [chosenDate, setChosenDate] = useState(today);
+	const [searchValue, setSearchValue] = useState('');
 	const onFormSubmit = (e, searchValue) => {
 		e.preventDefault();
-		// setState({
-		// 	...state,
-		// 	searchValue,
-		// });
+		setSearchValue(searchValue);
 	};
-
 	const activeDate = format(chosenDate, 'dd-MM-yyyy');
 	const filterProps = {
 		setFlightDirection,
@@ -25,10 +22,12 @@ const HomePage = () => {
 	};
 	return (
 		<>
-			<SearchField />
+			<SearchField onFormSubmit={onFormSubmit} />
 			<FlightFilter {...filterProps} />
-			<FlightTable activeDate={activeDate}
-									 flightDirection={flightDirection}
+			<FlightTable
+				activeDate={activeDate}
+				flightDirection={flightDirection}
+				searchValue={searchValue}
 			/>
 		</>
 	);
