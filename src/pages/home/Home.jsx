@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import format from 'date-fns/format';
+import addDays from 'date-fns/addDays';
+import subDays from 'date-fns/subDays';
 import SearchField from '../../components/search';
 import FlightFilter from '../../components/flightFilter';
 import FlightTable from '../../components/flightTable';
+import { today } from '../../constants/constants';
 
 const HomePage = () => {
 	const [flightDirection, setFlightDirection] = useState('arrivals');
-	const [chosenDate, setChosenDate] = useState(new Date());
+	const [chosenDate, setChosenDate] = useState(today);
 
 	const chooseFlightDirection = (flightDirection) => {
 		setFlightDirection(flightDirection);
@@ -17,16 +20,16 @@ const HomePage = () => {
 			setChosenDate(date);
 		}
 		if (pickedDay === 'yesterday') {
-			setChosenDate(new Date(today.setDate(today.getDate() - 1)));
+			setChosenDate(subDays(today, 1));
 		}
 		if (pickedDay === 'today') {
 			setChosenDate(today);
 		}
 		if (pickedDay === 'tomorrow') {
-			setChosenDate(new Date(today.setDate(today.getDate() + 1)));
+			setChosenDate(addDays(today, 1));
 		}
 	};
-	const today = new Date();
+
 	const activeDate = format(chosenDate, 'dd-MM-yyyy');
 	const filterProps = {
 		chooseFlightDirection,

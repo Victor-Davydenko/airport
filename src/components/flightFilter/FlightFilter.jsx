@@ -10,6 +10,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import './flightFilter.scss';
 import icon from '../../images/dateIcon.png';
+import { today, tomorrow, yesterday } from '../../constants/constants';
 
 const FlightFilter = ({
 	flightDirection,
@@ -40,17 +41,17 @@ const FlightFilter = ({
 				 <ul className="filter__date-list">
 					<li className={classNames(['filter__date-list-item',
 						isYesterday(chosenDate) && 'filter__date-list-item--active'])} onClick={() => chooseDate({ pickedDay: 'yesterday' })}>
-						<span className="date">{format(new Date(new Date().setDate(new Date().getDate() - 1)), 'dd/MM')}</span>
+						<span className="date">{format(yesterday, 'dd/MM')}</span>
 						<span className="text">Вчора</span>
 					</li>
 					<li className={classNames(['filter__date-list-item',
 						isToday(chosenDate) && 'filter__date-list-item--active'])} onClick={() => chooseDate({ pickedDay: 'today' })}>
-						<span className="date">{format(new Date(), 'dd/MM')}</span>
+						<span className="date">{format(today, 'dd/MM')}</span>
 						<span className="text">Сьогодні</span>
 					</li>
 					<li className={classNames(['filter__date-list-item',
 						isTomorrow(chosenDate) && 'filter__date-list-item--active'])} onClick={() => chooseDate({ pickedDay: 'tomorrow' })}>
-						<span className="date">{format(new Date(new Date().setDate(new Date().getDate() + 1)), 'dd/MM')}</span>
+						<span className="date">{format(tomorrow, 'dd/MM')}</span>
 						<span className="text">Завтра</span>
 					</li>
 				 </ul>
