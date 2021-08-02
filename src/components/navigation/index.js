@@ -1,3 +1,3 @@
-import MainNavigation from './navigation';
+import MainNavigation from './Navigation';
 
 export default MainNavigation;

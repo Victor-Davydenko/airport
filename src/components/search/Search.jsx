@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import './search.scss';
+import Button from '../shared/button';
 
 const SearchField = ({ onFormSubmit }) => {
 	const [inputValue, setInputValue] = useState('');
@@ -15,7 +16,10 @@ const SearchField = ({ onFormSubmit }) => {
 									 placeholder='Номер рейсу або місто'
 									 onChange={(e) => setInputValue(e.target.value)}/>
 					</div>
-					<button className='search__button' type='submit'>Знайти</button>
+					<Button className='search__button'
+						type='submit'
+						text='Знайти'
+					/>
 				</form>
 			</div>
 		</div>
