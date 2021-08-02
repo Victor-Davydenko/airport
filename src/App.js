@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react';
-
 import './App.scss';
 
 import Header from './components/header';
-import SearchField from './components/search';
-import FlightFilter from './components/flightFilter';
-import FlightTable from './components/flightTable';
 import Footer from './components/footer';
+import HomePage from './pages/home';
 
 function App() {
 	useEffect(() => {
@@ -27,9 +24,7 @@ function App() {
 		<div className="App">
 			<Header />
 			<div className="container">
-				<SearchField />
-				<FlightFilter />
-				<FlightTable />
+				<HomePage />
 			</div>
 			<Footer />
 		</div>

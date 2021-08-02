@@ -30,10 +30,10 @@
     left: 0;
     width: 50%;
     font-size: $semiLargeFontSize;
-    color: $white;
+    color: $lightBlue;
     text-transform: uppercase;
     padding: $mediumSpace $extraLargeSpace;
-    background: $lightBlue;
+    background: $white;
     border-radius: 60px 60px 0 0;
     cursor: pointer;
 }
@@ -46,9 +46,9 @@
     left: 50%;
 }
 
-.filter__flights-list-item.active {
-    background: $white;
-    color: $darkBlue;
+.filter__flights-list-item--active {
+    background: $lightBlue;
+    color: $white;
     z-index: 1;
 }
 
@@ -130,11 +130,11 @@
     bottom: 0;
 }
 
-.filter__date-list-item.active:after {
+.filter__date-list-item--active:after {
     background: $darkBlue;
 }
 
-.filter__date-list-item.active {
+.filter__date-list-item--active {
     .date {
         color: $darkBlue;
     }

@@ -16,6 +16,7 @@
     "no-tabs": "off",
     "no-mixed-spaces-and-tabs": "off",
     "no-underscore-dangle": "off",
-    "no-return-await": "off"
+    "no-return-await": "off",
+    "no-shadow": "off"
   }
 }
