@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import format from 'date-fns/format';
 
 import './flightTable.scss';
 
 import httpService from '../../service';
+import FlightTableRow from './flightTableRow/FlightTableRow';
 
 const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 	const [state, setState] = useState({
@@ -18,14 +20,20 @@ const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 		httpService.getAllFlights(activeDate)
 			.then((data) => {
 				setIsLoading(false);
-				setData(data.body[flightDirection]);
+				setData(data.body);
 			})
 			.catch(() => {
 				setIsLoading(false);
 				setIsError(true);
 			});
-	}, [activeDate, flightDirection]);
-	console.log(isLoading, data, isError, flightDirection);
+	}, [activeDate]);
+	const tbody = data ? data[flightDirection].map((flight) => {
+		const scheduledDate = format(Date.parse(flight.timeDepShedule || flight.timeArrShedule), 'dd-MM-yyyy');
+		if (scheduledDate === activeDate) {
+			return <FlightTableRow flight={flight} key={flight.ID} />;
+		}
+	}) : null;
+
 	return (
 		<div className="table-wrapper">
 			 <table className="table">
@@ -41,38 +49,7 @@ const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							<span className='terminal'>А</span>
-						</td>
-						<td>2:00</td>
-						<td>Анталія</td>
-						<td>Вилетів о 2:13</td>
-						<td>
-							<img className='image' src="https://api.iev.aero/media/airline/files/5b556bea9e8d9364778468.png" alt=""/>
-							<span className='company'>WizzAir</span>
-						</td>
-						<td>7W9235</td>
-						<td>
-							<a href="" className="table__link">Деталі рейсу</a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span className='terminal'>А</span>
-						</td>
-						<td>2:00</td>
-						<td>Анталія</td>
-						<td>Вилетів о 2:13</td>
-						<td>
-							<span className="image"><img src="" alt=""/></span>
-			        WizzAir
-						</td>
-						<td>7W9235</td>
-						<td>
-							<a href="" className="table__link">Деталі рейсу</a>
-						</td>
-					</tr>
+					{tbody}
 				</tbody>
 			 </table>
 		</div>
