@@ -2,7 +2,30 @@ import React, { useState, useEffect } from 'react';
 
 import './flightTable.scss';
 
-const FlightTable = () => {
+import httpService from '../../service';
+
+const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
+	const [state, setState] = useState({
+		loading: true,
+		data: null,
+		error: null,
+	});
+	const [isLoading, setIsLoading] = useState(true);
+	const [data, setData] = useState(null);
+	const [isError, setIsError] = useState(false);
+
+	useEffect(() => {
+		httpService.getAllFlights(activeDate)
+			.then((data) => {
+				setIsLoading(false);
+				setData(data.body[flightDirection]);
+			})
+			.catch(() => {
+				setIsLoading(false);
+				setIsError(true);
+			});
+	}, [activeDate, flightDirection]);
+	console.log(isLoading, data, isError, flightDirection);
 	return (
 		<div className="table-wrapper">
 			 <table className="table">
