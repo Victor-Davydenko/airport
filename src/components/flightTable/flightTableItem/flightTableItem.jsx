@@ -7,7 +7,7 @@ const FlightTableItem = ({ flight }) => {
 	let statusToDisplay;
 	let timeToDisplay;
 	if (flight.status === 'DP') {
-		statusToDisplay = 'Вилетів';
+		statusToDisplay = 'Вилетів о ';
 		timeToDisplay = format(Date.parse(flight.timeTakeofFact), 'H:mm');
 	}
 	if (flight.status === 'CK') {
@@ -23,7 +23,7 @@ const FlightTableItem = ({ flight }) => {
 		statusToDisplay = 'Скасовано';
 	}
 	if (flight.status === 'LN') {
-		statusToDisplay = 'Прибув';
+		statusToDisplay = 'Прибув о ';
 		timeToDisplay = format(Date.parse(flight.timeLandFact), 'H:mm');
 		console.log(flight.timeLandFact, flight);
 	}
@@ -31,7 +31,7 @@ const FlightTableItem = ({ flight }) => {
 		statusToDisplay = 'У польоті';
 	}
 	if (flight.status === 'DL') {
-		statusToDisplay = 'Затримується до';
+		statusToDisplay = 'Затримується до ';
 		timeToDisplay = format(Date.parse(flight.timeLandCalc), 'H:mm');
 	}
 	return (
