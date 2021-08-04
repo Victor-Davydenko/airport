@@ -29,10 +29,19 @@ const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 	}, [activeDate]);
 	const tbody = data ? data[flightDirection].map((flight) => {
 		const scheduledDate = format(Date.parse(flight.timeDepShedule || flight.timeToStand), 'dd-MM-yyyy');
-		if (scheduledDate === activeDate) {
-			return <FlightTableRow
-				flight={flight}
-				key={flight.ID} />;
+		const direction = flight['airportToID.city'].toLowerCase() || flight['airportFromID.city'].toLowerCase();
+		if (!searchValue) {
+			if (scheduledDate === activeDate) {
+				return <FlightTableRow
+					flight={flight}
+					key={flight.ID} />;
+			}
+		} else {
+			if (scheduledDate === activeDate && direction.includes(searchValue.toLowerCase())) {
+				return <FlightTableRow
+					flight={flight}
+					key={flight.ID} />;
+			}
 		}
 	}) : null;
 

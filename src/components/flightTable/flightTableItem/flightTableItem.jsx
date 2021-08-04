@@ -13,7 +13,7 @@ const FlightTableItem = ({ flight }) => {
 	if (flight.status === 'CK') {
 		statusToDisplay = 'Реєстрація';
 	}
-	if (flight.status === 'BD') {
+	if (flight.status === 'CC') {
 		statusToDisplay = 'Посадка';
 	}
 	if (flight.status === 'ON') {
@@ -25,7 +25,6 @@ const FlightTableItem = ({ flight }) => {
 	if (flight.status === 'LN') {
 		statusToDisplay = 'Прибув о ';
 		timeToDisplay = format(Date.parse(flight.timeLandFact), 'H:mm');
-		console.log(flight.timeLandFact, flight);
 	}
 	if (flight.status === 'FR') {
 		statusToDisplay = 'У польоті';
@@ -34,6 +33,7 @@ const FlightTableItem = ({ flight }) => {
 		statusToDisplay = 'Затримується до ';
 		timeToDisplay = format(Date.parse(flight.timeLandCalc), 'H:mm');
 	}
+	console.log(flight.status, flight);
 	return (
 		<td>
 			 {statusToDisplay}
