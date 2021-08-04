@@ -19,6 +19,7 @@
     "no-return-await": "off",
     "no-shadow": "off",
     "consistent-return": "off",
-    "no-lonely-if": "off"
+    "no-lonely-if": "off",
+    "no-param-reassign": "off"
   }
 }

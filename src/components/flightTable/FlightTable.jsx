@@ -5,13 +5,10 @@ import './flightTable.scss';
 
 import httpService from '../../service';
 import FlightTableRow from './flightTableRow/FlightTableRow';
+import Spinner from '../shared/spinner';
+import Error from '../shared/error';
 
 const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
-	const [state, setState] = useState({
-		loading: true,
-		data: null,
-		error: null,
-	});
 	const [isLoading, setIsLoading] = useState(true);
 	const [data, setData] = useState(null);
 	const [isError, setIsError] = useState(false);
@@ -29,7 +26,9 @@ const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 	}, [activeDate]);
 	const tbody = data ? data[flightDirection].map((flight) => {
 		const scheduledDate = format(Date.parse(flight.timeDepShedule || flight.timeToStand), 'dd-MM-yyyy');
-		const direction = flight['airportToID.city'].toLowerCase() || flight['airportFromID.city'].toLowerCase();
+		let direction = flight['airportToID.city'] || flight['airportFromID.city'];
+		direction = direction.toLowerCase();
+		searchValue = searchValue.toLowerCase();
 		if (!searchValue) {
 			if (scheduledDate === activeDate) {
 				return <FlightTableRow
@@ -37,14 +36,27 @@ const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 					key={flight.ID} />;
 			}
 		} else {
-			if (scheduledDate === activeDate && direction.includes(searchValue.toLowerCase())) {
+			if (scheduledDate === activeDate && direction.includes(searchValue)) {
 				return <FlightTableRow
 					flight={flight}
 					key={flight.ID} />;
 			}
 		}
 	}) : null;
-
+	if (isLoading) {
+		return (
+			<div className="table-wrapper">
+				<Spinner />
+			</div>
+		);
+	}
+	if (isError) {
+		return (
+			<div className="table-wrapper">
+				<Error />
+			</div>
+		);
+	}
 	return (
 		<div className="table-wrapper">
 			 <table className="table">
