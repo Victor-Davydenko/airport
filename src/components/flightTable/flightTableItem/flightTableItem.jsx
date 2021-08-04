@@ -33,7 +33,6 @@ const FlightTableItem = ({ flight }) => {
 		statusToDisplay = 'Затримується до ';
 		timeToDisplay = format(Date.parse(flight.timeLandCalc), 'H:mm');
 	}
-	console.log(flight.status, flight);
 	return (
 		<td>
 			 {statusToDisplay}
