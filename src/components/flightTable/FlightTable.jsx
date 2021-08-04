@@ -10,55 +10,52 @@ import Error from '../shared/error';
 
 const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 	const [isLoading, setIsLoading] = useState(true);
-	const [data, setData] = useState(null);
+	const [flightsData, setFlightsData] = useState(null);
 	const [isError, setIsError] = useState(false);
 
 	useEffect(() => {
 		httpService.getAllFlights(activeDate)
 			.then((data) => {
 				setIsLoading(false);
-				setData(data.body);
+				setFlightsData(data.body);
 			})
 			.catch(() => {
 				setIsLoading(false);
 				setIsError(true);
 			});
 	}, [activeDate]);
-	const tbody = data ? data[flightDirection].map((flight) => {
-		const scheduledDate = format(Date.parse(flight.timeDepShedule || flight.timeToStand), 'dd-MM-yyyy');
-		let direction = flight['airportToID.city'] || flight['airportFromID.city'];
-		direction = direction.toLowerCase();
-		searchValue = searchValue.toLowerCase();
-		if (!searchValue) {
-			if (scheduledDate === activeDate) {
+
+	const buildFlightTableBody = (flights) => {
+		return flights[flightDirection].map((flight) => {
+			const scheduledDate = format(Date.parse(flight.timeDepShedule || flight.timeToStand), 'dd-MM-yyyy');
+			let direction = flight['airportToID.city'] || flight['airportFromID.city'];
+			direction = direction.toLowerCase();
+			searchValue = searchValue.toLowerCase();
+			if (scheduledDate === activeDate && !searchValue) {
 				return <FlightTableRow
 					flight={flight}
-					key={flight.ID} />;
+					key={flight.ID}/>;
 			}
-		} else {
 			if (scheduledDate === activeDate && direction.includes(searchValue)) {
 				return <FlightTableRow
 					flight={flight}
-					key={flight.ID} />;
+					key={flight.ID}/>;
 			}
-		}
-	}) : null;
+		});
+	};
+	const flightTableBody = flightsData && buildFlightTableBody(flightsData);
 	if (isLoading) {
 		return (
-			<div className="table-wrapper">
-				<Spinner />
-			</div>
+			<Spinner />
 		);
 	}
 	if (isError) {
 		return (
-			<div className="table-wrapper">
-				<Error />
-			</div>
+			<Error />
 		);
 	}
 	return (
-		<div className="table-wrapper">
+		<div className="wrapper">
 			 <table className="table">
 				<thead>
 					<tr>
@@ -72,7 +69,7 @@ const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{tbody}
+					{flightTableBody}
 				</tbody>
 			 </table>
 		</div>

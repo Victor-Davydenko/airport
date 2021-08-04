@@ -6,30 +6,31 @@ import './flightTableItem.scss';
 const FlightTableItem = ({ flight }) => {
 	let statusToDisplay;
 	let timeToDisplay;
-	if (flight.status === 'DP') {
+	switch (flight.status) {
+	case 'DP':
 		statusToDisplay = 'Вилетів о ';
 		timeToDisplay = format(Date.parse(flight.timeTakeofFact), 'H:mm');
-	}
-	if (flight.status === 'CK') {
+		break;
+	case 'CK':
 		statusToDisplay = 'Реєстрація';
-	}
-	if (flight.status === 'CC') {
+		break;
+	case 'CC':
 		statusToDisplay = 'Посадка';
-	}
-	if (flight.status === 'ON') {
+		break;
+	case 'ON':
 		statusToDisplay = 'Вчасно';
-	}
-	if (flight.status === 'CX') {
+		break;
+	case 'CX':
 		statusToDisplay = 'Скасовано';
-	}
-	if (flight.status === 'LN') {
+		break;
+	case 'LN':
 		statusToDisplay = 'Прибув о ';
 		timeToDisplay = format(Date.parse(flight.timeLandFact), 'H:mm');
-	}
-	if (flight.status === 'FR') {
+		break;
+	case 'FR':
 		statusToDisplay = 'У польоті';
-	}
-	if (flight.status === 'DL') {
+		break;
+	case 'DL':
 		statusToDisplay = 'Затримується до ';
 		timeToDisplay = format(Date.parse(flight.timeLandCalc), 'H:mm');
 	}

@@ -4,10 +4,12 @@ import './spinner.scss';
 
 const Spinner = () => {
 	return (
-		<div className='spinner'>
-			<div className='lds-ripple'>
-				<div></div>
-				<div></div>
+		<div className='wrapper'>
+			<div className='spinner'>
+				<div className='lds-ripple'>
+					<div></div>
+					<div></div>
+				</div>
 			</div>
 		</div>
 	);
