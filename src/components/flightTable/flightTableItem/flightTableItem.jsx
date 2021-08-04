@@ -25,6 +25,7 @@ const FlightTableItem = ({ flight }) => {
 	if (flight.status === 'LN') {
 		statusToDisplay = 'Прибув';
 		timeToDisplay = format(Date.parse(flight.timeLandFact), 'H:mm');
+		console.log(flight.timeLandFact, flight);
 	}
 	if (flight.status === 'FR') {
 		statusToDisplay = 'У польоті';

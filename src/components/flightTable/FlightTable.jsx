@@ -28,9 +28,11 @@ const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 			});
 	}, [activeDate]);
 	const tbody = data ? data[flightDirection].map((flight) => {
-		const scheduledDate = format(Date.parse(flight.timeDepShedule || flight.timeArrShedule), 'dd-MM-yyyy');
+		const scheduledDate = format(Date.parse(flight.timeDepShedule || flight.timeToStand), 'dd-MM-yyyy');
 		if (scheduledDate === activeDate) {
-			return <FlightTableRow flight={flight} key={flight.ID} />;
+			return <FlightTableRow
+				flight={flight}
+				key={flight.ID} />;
 		}
 	}) : null;
 

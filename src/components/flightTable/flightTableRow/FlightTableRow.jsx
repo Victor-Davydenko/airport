@@ -5,7 +5,7 @@ import './flightTableRow.scss';
 import FlightTableItem from '../flightTableItem/flightTableItem';
 
 const FlightTableRow = ({ flight }) => {
-	const scheduledTime = format(Date.parse(flight.timeDepShedule || flight.timeArrShedule), 'H:mm');
+	const scheduledTime = format(Date.parse(flight.timeDepShedule || flight.timeToStand), 'H:mm');
 	return (
 		<tr>
 			<td>
