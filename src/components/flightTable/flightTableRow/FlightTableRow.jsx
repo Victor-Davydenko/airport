@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import format from 'date-fns/format';
 
 import './flightTableRow.scss';
 import FlightTableItem from '../flightTableItem/flightTableItem';
 
-const FlightTableRow = ({ flight }) => {
+const FlightTableRow = ({ flight, activeDate }) => {
 	const scheduledTime = format(Date.parse(flight.timeDepShedule || flight.timeToStand), 'H:mm');
 	return (
 		<tr>
@@ -20,10 +21,13 @@ const FlightTableRow = ({ flight }) => {
 			</td>
 			<td>{flight.codeShareData[0].codeShare}</td>
 			<td>
-				<a href="" className="table__link">Деталі рейсу</a>
+				<Link to={`/details/${activeDate}id=${flight.ID}`} className="table__link">Деталі рейсу</Link>
 			</td>
 		</tr>
 	);
 };
 
 export default FlightTableRow;
+
+// https://api.iev.aero/api/flights/05-08-2021/2000041930351
+//

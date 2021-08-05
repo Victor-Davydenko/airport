@@ -20,12 +20,16 @@ const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 			if (scheduledDate === activeDate && !searchValue) {
 				return <FlightTableRow
 					flight={flight}
-					key={flight.ID}/>;
+					key={flight.ID}
+					activeDate={activeDate}
+				/>;
 			}
 			if (scheduledDate === activeDate && direction.includes(searchValue)) {
 				return <FlightTableRow
 					flight={flight}
-					key={flight.ID}/>;
+					key={flight.ID}
+					activeDate={activeDate}
+				/>;
 			}
 		});
 	};

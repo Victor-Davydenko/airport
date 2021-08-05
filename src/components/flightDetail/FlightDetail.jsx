@@ -1,18 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './flightDetail.scss';
 import FlightAware from '../../images/FlightAware.webp';
+import useApi from '../../hooks/useApi';
 
-const FlightDetail = () => {
+const FlightDetail = ({ id }) => {
+	const url = id.replace('id=', '/');
+	const { isLoading, response: flightInfo, isError } = useApi(url);
+	console.log(isLoading, flightInfo, isError);
 	return (
 		<>
 			<div className="row">
 				<span className='text text--flight'>w355554 </span>
 				<span className='text'>вилітає з</span><br />
 				<span className='city-name'>Hanover</span>
-				<Link to={''} className='nav-link nav-link--flightaware'>
+				<a href={'#'} className='nav-link nav-link--flightaware'>
 					<img src={FlightAware} alt=""/>
-				</Link>
+				</a>
 			</div>
 			<div className="row">
 				<p>Інформація про рейс: </p>
