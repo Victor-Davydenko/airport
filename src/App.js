@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import './App.scss';
 
 import Header from './components/header';
 import Footer from './components/footer';
 import HomePage from './pages/home';
+import FlightDetailPage from './pages/flight_detail';
 
 function App() {
 	useEffect(() => {
@@ -25,7 +27,10 @@ function App() {
 		<div className="App">
 			<Header />
 			<div className="container">
-				<HomePage />
+				<BrowserRouter>
+					<Route path='/' component={HomePage} exact />
+					<Route path='/details/:id' component={FlightDetailPage} exact />
+				</BrowserRouter>
 			</div>
 			<Footer />
 		</div>
