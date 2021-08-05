@@ -3,27 +3,13 @@ import format from 'date-fns/format';
 
 import './flightTable.scss';
 
-import httpService from '../../service';
+import useApi from '../../hooks/useApi';
 import FlightTableRow from './flightTableRow/FlightTableRow';
 import Spinner from '../shared/spinner';
 import Error from '../shared/error';
 
 const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
-	const [isLoading, setIsLoading] = useState(true);
-	const [flightsData, setFlightsData] = useState(null);
-	const [isError, setIsError] = useState(false);
-
-	useEffect(() => {
-		httpService.getAllFlights(activeDate)
-			.then((data) => {
-				setIsLoading(false);
-				setFlightsData(data.body);
-			})
-			.catch(() => {
-				setIsLoading(false);
-				setIsError(true);
-			});
-	}, [activeDate]);
+	const { response: flights, isLoading, isError } = useApi(activeDate);
 
 	const buildFlightTableBody = (flights) => {
 		return flights[flightDirection].map((flight) => {
@@ -43,7 +29,7 @@ const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 			}
 		});
 	};
-	const flightTableBody = flightsData && buildFlightTableBody(flightsData);
+	const flightTableBody = flights && buildFlightTableBody(flights);
 	if (isLoading) {
 		return (
 			<Spinner />
