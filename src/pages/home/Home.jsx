@@ -6,7 +6,6 @@ import FlightTable from '../../components/flightTable';
 import { today } from '../../constants/constants';
 
 const HomePage = () => {
-	const [flightDirection, setFlightDirection] = useState('arrival');
 	const [chosenDate, setChosenDate] = useState(today);
 	const [searchValue, setSearchValue] = useState('');
 	const onFormSubmit = (e, searchValue) => {
@@ -15,9 +14,7 @@ const HomePage = () => {
 	};
 	const activeDate = format(chosenDate, 'dd-MM-yyyy');
 	const filterProps = {
-		setFlightDirection,
 		setChosenDate,
-		flightDirection,
 		chosenDate,
 	};
 	return (
@@ -26,7 +23,6 @@ const HomePage = () => {
 			<FlightFilter {...filterProps} />
 			<FlightTable
 				activeDate={activeDate}
-				flightDirection={flightDirection}
 				searchValue={searchValue}
 			/>
 		</>

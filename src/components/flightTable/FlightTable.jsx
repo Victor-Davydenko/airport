@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import format from 'date-fns/format';
 
 import './flightTable.scss';
@@ -8,8 +9,9 @@ import FlightTableRow from './flightTableRow/FlightTableRow';
 import Spinner from '../shared/spinner';
 import Error from '../shared/error';
 
-const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
+const FlightTable = ({ activeDate, searchValue }) => {
 	const { response: flights, isLoading, isError } = useApi(activeDate);
+	const flightDirection = useSelector((state) => state.flightDirectionReducer.flightDirection);
 
 	const buildFlightTableBody = (flights) => {
 		return flights[flightDirection].map((flight) => {
