@@ -9,9 +9,12 @@ import FlightTableRow from './flightTableRow/FlightTableRow';
 import Spinner from '../shared/spinner';
 import Error from '../shared/error';
 
-const FlightTable = ({ activeDate, searchValue }) => {
-	const { response: flights, isLoading, isError } = useApi(activeDate);
+const FlightTable = () => {
 	const flightDirection = useSelector((state) => state.flightDirectionReducer.flightDirection);
+	const chosenDate = useSelector((state) => state.flightDateReducer.chosenDate);
+	let searchValue = useSelector((state) => state.searchValueReducer.searchValue);
+	const activeDate = format(chosenDate, 'dd-MM-yyyy');
+	const { response: flights, isLoading, isError } = useApi(activeDate);
 
 	const buildFlightTableBody = (flights) => {
 		return flights[flightDirection].map((flight) => {

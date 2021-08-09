@@ -15,26 +15,25 @@ import './flightFilter.scss';
 import icon from '../../images/dateIcon.png';
 import { today, tomorrow, yesterday } from '../../constants/constants';
 import { setFlightDirection } from '../../store/flightDirectionSlice';
+import { setChosenDate } from '../../store/dateSlice';
 
-const FlightFilter = ({
-	chosenDate,
-	setChosenDate,
-}) => {
+const FlightFilter = () => {
 	const flightDirection = useSelector((state) => state.flightDirectionReducer.flightDirection);
+	const chosenDate = useSelector((state) => state.flightDateReducer.chosenDate);
 	const dispatch = useDispatch();
 	const chooseDate = (options) => {
 		const { date, pickedDay } = options;
 		if (date) {
-			setChosenDate(date);
+			dispatch(setChosenDate(date));
 		}
 		if (pickedDay === 'yesterday') {
-			setChosenDate(subDays(today, 1));
+			dispatch(setChosenDate(subDays(today, 1)));
 		}
 		if (pickedDay === 'today') {
-			setChosenDate(today);
+			dispatch(setChosenDate(today));
 		}
 		if (pickedDay === 'tomorrow') {
-			setChosenDate(addDays(today, 1));
+			dispatch(setChosenDate(addDays(today, 1)));
 		}
 	};
 	return (

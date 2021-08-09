@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setSearchValue } from '../../store/searchFieldSlice';
 
 import './search.scss';
 import Button from '../shared/button';
 
-const SearchField = ({ onFormSubmit }) => {
+const SearchField = () => {
 	const [inputValue, setInputValue] = useState('');
+	const dispatch = useDispatch();
+	const onFormSubmit = (e) => {
+		e.preventDefault();
+		dispatch(setSearchValue(inputValue));
+	};
 	return (
 		<div className='search'>
 			<h2 className="search__title">Пошук рейсу</h2>
 			<div className="search__wrapper">
-				<form action="" className="search__form" onSubmit={(e) => onFormSubmit(e, inputValue)}>
+				<form action="" className="search__form" onSubmit={(e) => onFormSubmit(e)}>
 					<div className="search__input-wrapper">
 						<input className="search__input"
 									 type="text" value={inputValue}
