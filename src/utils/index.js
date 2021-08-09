@@ -1,3 +1,3 @@
-import classNames from './utils';
+import { classNames } from './utils';
 
 export default classNames;

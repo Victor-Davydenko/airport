@@ -4,7 +4,7 @@
     padding: 25px 0;
 }
 
-.nav-link {
+.flight-details__nav-link {
     text-decoration: none;
     color: $darkBlue;
     padding: 0 20px 0 35px;
@@ -18,7 +18,7 @@
     transition: .3s ease-in-out;
 }
 
-.nav-link:hover {
+.flight-details__nav-link:hover {
     background: $darkBlue;
     color: $white;
 }
