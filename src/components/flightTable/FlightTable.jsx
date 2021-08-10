@@ -7,6 +7,7 @@ import useApi from '../../hooks/useApi';
 import FlightTableRow from './flightTableRow/FlightTableRow';
 import Spinner from '../shared/spinner';
 import Error from '../shared/error';
+import NoFlights from '../noFlights';
 
 const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 	const { response: flights, isLoading, error } = useApi(activeDate);
@@ -39,7 +40,7 @@ const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{buildFlightTableBody(flights)}
+					{buildFlightTableBody(flights).length ? buildFlightTableBody(flights) : <NoFlights />}
 				</tbody>
 			</table>
 		</div>
