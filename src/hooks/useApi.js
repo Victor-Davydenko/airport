@@ -26,7 +26,6 @@ const useApi = (url, options) => {
 					response: json.body,
 				});
 			} catch (error) {
-				console.log(error);
 				setState({
 					...state,
 					isLoading: false,
