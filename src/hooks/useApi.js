@@ -2,29 +2,42 @@ import { useState, useEffect } from 'react';
 import { baseUrl } from '../constants/constants';
 
 const useApi = (url, options) => {
-	const [isLoading, setIsLoading] = useState(true);
-	const [response, setResponse] = useState(null);
-	const [isError, setIsError] = useState(false);
+	const [state, setState] = useState({
+		isLoading: false,
+		response: null,
+		error: null,
+	});
 
 	useEffect(() => {
 		const fetchData = async () => {
-			setIsLoading(true);
+			setState({
+				...state,
+				isLoading: true,
+			});
 			try {
 				const res = await fetch(`${baseUrl}${url}`, options);
 				if (!res.ok) {
 					throw new Error('Something went wrong');
 				}
 				const json = await res.json();
-				setResponse(json.body);
-				setIsLoading(false);
+				setState({
+					...state,
+					isLoading: false,
+					response: json.body,
+				});
 			} catch (error) {
-				setIsError(true);
+				console.log(error);
+				setState({
+					...state,
+					isLoading: false,
+					error,
+				});
 			}
 		};
 		fetchData();
 	}, [url]);
 
-	return { isLoading, response, isError };
+	return { ...state };
 };
 
 export default useApi;

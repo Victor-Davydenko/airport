@@ -2,11 +2,12 @@ import React from 'react';
 
 import './error.scss';
 
-const Error = () => {
+const Error = ({ text }) => {
 	return (
 		<div className='wrapper'>
 			<div className='error'>
-				Сталася помилка. Спробуйте пізніше
+				<p>Сталася помилка. Спробуйте пізніше</p>
+				<span className='error__message'>{text}</span>
 			</div>
 		</div>
 	);
