@@ -10,7 +10,7 @@ import { checkFlightStatus } from '../../utils/utils';
 const FlightDetail = ({ id }) => {
 	const url = id.replace('id=', '/');
 	const baseFlightAwareUrl = 'https://ru.flightaware.com/live/flight/';
-	const { isLoading, response: flightInfo, isError } = useApi(url);
+	const { isLoading, response: flightInfo, error } = useApi(url);
 	const buildFlightDetailsBody = (flightInfo) => {
 		const flightDirection = flightInfo['airportFromID.city'] ? 'Прилітає з' : 'Летить в';
 		const scheduledTime = format(Date.parse(flightInfo.timeDepShedule || flightInfo.timeToStand), 'H:mm');
@@ -63,9 +63,9 @@ const FlightDetail = ({ id }) => {
 			<Spinner />
 		);
 	}
-	if (isError) {
+	if (error) {
 		return (
-			<Error />
+			<Error text={error.message} />
 		);
 	}
 	return (
