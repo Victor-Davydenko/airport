@@ -17,10 +17,9 @@ const FlightTable = () => {
 	let searchValue = useSelector((state) => state.searchValueReducer.searchValue);
 	const activeDate = format(chosenDate, 'dd-MM-yyyy');
 	const { isLoading, flightData: flights, isError } = useSelector((state) => state.flightDataReducer);
-	// const { response: flights, isLoading, isError } = useApi(activeDate);
 	useEffect(() => {
 		dispatch(getData({ url: activeDate }));
-	}, []);
+	}, [activeDate]);
 	const buildFlightTableBody = (flights) => {
 		return flights[flightDirection].map((flight) => {
 			const scheduledDate = format(Date.parse(flight.timeDepShedule || flight.timeToStand), 'dd-MM-yyyy');

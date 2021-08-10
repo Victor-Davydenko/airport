@@ -1,21 +1,18 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { baseUrl } from '../constants/constants';
 
-const getData = createAsyncThunk({
-	name: 'flightData/getData',
-	async function(settings, { rejectWithValue }) {
-		try {
-			const res = await fetch(`${baseUrl}${settings.url}`, settings.options);
-			if (!res.ok) {
-				throw new Error('Something went wrong');
-			}
-			const json = await res.json();
-			return json;
+export const getData = createAsyncThunk('flightData/getData', async (settings, { rejectWithValue }) => {
+	try {
+		const res = await fetch(`${baseUrl}${settings.url}`, settings.options);
+		if (!res.ok) {
+			throw new Error('Something went wrong');
 		}
-		catch (e) {
-			return rejectWithValue(e);
-		}
-	},
+		const json = await res.json();
+		return json.body;
+	}
+	catch (e) {
+		return rejectWithValue(e);
+	}
 });
 
 const dataSlice = createSlice({
@@ -40,7 +37,5 @@ const dataSlice = createSlice({
 		},
 	},
 });
-
-export { getData };
 
 export default dataSlice.reducer;
