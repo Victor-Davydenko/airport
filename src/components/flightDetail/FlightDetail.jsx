@@ -5,7 +5,7 @@ import FlightAware from '../../images/FlightAware.webp';
 import useApi from '../../hooks/useApi';
 import Spinner from '../shared/spinner';
 import Error from '../shared/error';
-import { checkFlightStatus } from '../../utils/utils';
+import { checkFlightStatus, formatDateToDisplay } from '../../utils/utils';
 
 const FlightDetail = ({ id }) => {
 	const url = id.replace('id=', '/');
@@ -13,8 +13,6 @@ const FlightDetail = ({ id }) => {
 	const { isLoading, response: flightInfo, error } = useApi(url);
 	const buildFlightDetailsBody = (flightInfo) => {
 		const flightDirection = flightInfo['airportFromID.city'] ? 'Прилітає з' : 'Летить в';
-		const scheduledTime = format(Date.parse(flightInfo.timeDepShedule || flightInfo.timeToStand), 'H:mm');
-		const scheduledDate = format(Date.parse(flightInfo.timeDepShedule || flightInfo.timeToStand), 'dd.MM');
 		const { statusToDisplay, timeToDisplay, fullDateToDisplay } = checkFlightStatus(flightInfo);
 		return (
 			<>
@@ -25,7 +23,7 @@ const FlightDetail = ({ id }) => {
 					<a target='_blank'
 						 href={`${baseFlightAwareUrl}${flightInfo.airline.en.icao}${flightInfo.fltNo}`}
 						 className='flight-details__nav-link flight-details__nav-link--flightaware' rel="noreferrer">
-						<img src={FlightAware} alt=""/>
+						<img src={FlightAware} alt="button-bg"/>
 					</a>
 				</div>
 				<div className="flight-details__row">
@@ -43,8 +41,8 @@ const FlightDetail = ({ id }) => {
 						</thead>
 						<tbody>
 							<tr>
-								<td>{scheduledDate}</td>
-								<td>{scheduledTime}</td>
+								<td>{formatDateToDisplay(flightInfo.timeDepShedule || flightInfo.timeToStand, 'dd.MM')}</td>
+								<td>{formatDateToDisplay(flightInfo.timeDepShedule || flightInfo.timeToStand, 'H:mm')}</td>
 								<td>{flightInfo.term}</td>
 								<td>{flightInfo.codeShareData[0].codeShare}</td>
 								{flightDirection === 'Летить в' && <><td>{flightInfo.checkinNo}</td>
@@ -57,19 +55,10 @@ const FlightDetail = ({ id }) => {
 			</>
 		);
 	};
-	const flightDetailsBody = flightInfo && buildFlightDetailsBody(flightInfo);
-	if (isLoading) {
-		return (
-			<Spinner />
-		);
-	}
-	if (error) {
-		return (
-			<Error text={error.message} />
-		);
-	}
 	return (
-		flightDetailsBody
+		isLoading && <Spinner />
+		|| error && <Error text={error.message} />
+		|| flightInfo && buildFlightDetailsBody(flightInfo)
 	);
 };
 

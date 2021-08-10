@@ -1,18 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import format from 'date-fns/format';
 
 import './flightTableRow.scss';
+import { formatDateToDisplay } from '../../../utils/utils';
 import FlightTableItem from '../flightTableItem/flightTableItem';
 
 const FlightTableRow = ({ flight, activeDate }) => {
-	const scheduledTime = format(Date.parse(flight.timeDepShedule || flight.timeToStand), 'H:mm');
 	return (
 		<tr>
 			<td>
 				<span className='terminal'>{flight.term}</span>
 			</td>
-			<td>{scheduledTime}</td>
+			<td>{formatDateToDisplay(flight.timeDepShedule || flight.timeToStand, 'H:mm')}</td>
 			<td>{flight['airportToID.city'] || flight['airportFromID.city']}</td>
 			<FlightTableItem flight={flight} />
 			<td>

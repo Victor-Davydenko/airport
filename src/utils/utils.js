@@ -41,4 +41,8 @@ const checkFlightStatus = (flight) => {
 	return { statusToDisplay, timeToDisplay, fullDateToDisplay };
 };
 
-export { classNames, checkFlightStatus };
+const formatDateToDisplay = (date, pattern) => {
+	return format(Date.parse(date), pattern);
+};
+
+export { classNames, checkFlightStatus, formatDateToDisplay };
