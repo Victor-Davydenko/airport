@@ -20,6 +20,7 @@
     "no-shadow": "off",
     "consistent-return": "off",
     "no-lonely-if": "off",
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "brace-style": "off"
   }
 }
