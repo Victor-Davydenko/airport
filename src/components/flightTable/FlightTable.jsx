@@ -21,6 +21,7 @@ const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 			return scheduledDate === activeDate && (!searchValue || direction.includes(searchValue));
 		}).map((flight) => <FlightTableRow
 			flight={flight}
+			activeDate={activeDate}
 			key={flight.ID}/>);
 	};
 	return (
