@@ -25,9 +25,9 @@ const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 			key={flight.ID}/>);
 	};
 	return (
-		isLoading && <Spinner />
-		|| error && <Error text={error.message} />
-		|| flights && <div className="wrapper">
+		(isLoading && <Spinner />)
+		|| (error && <Error text={error.message} />)
+		|| (flights && <div className="wrapper">
 			<table className="table">
 				<thead>
 					<tr>
@@ -44,7 +44,7 @@ const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
 					{buildFlightTableBody(flights).length ? buildFlightTableBody(flights) : <NoFlights />}
 				</tbody>
 			</table>
-		</div>
+		</div>)
 	);
 };
 export default FlightTable;
