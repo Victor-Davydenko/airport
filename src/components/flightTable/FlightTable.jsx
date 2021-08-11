@@ -9,6 +9,7 @@ import { getData } from '../../store/dataSlice';
 import FlightTableRow from './flightTableRow/FlightTableRow';
 import Spinner from '../shared/spinner';
 import Error from '../shared/error';
+import NoFlights from '../noFlights';
 
 const FlightTable = () => {
 	const dispatch = useDispatch();
@@ -16,46 +17,27 @@ const FlightTable = () => {
 	const chosenDate = useSelector((state) => state.flightDateReducer.chosenDate);
 	let searchValue = useSelector((state) => state.searchValueReducer.searchValue);
 	const activeDate = format(chosenDate, 'dd-MM-yyyy');
-	const { isLoading, flightData: flights, isError } = useSelector((state) => state.flightDataReducer);
+	const { isLoading, flightData: flights, error } = useSelector((state) => state.flightDataReducer);
 	useEffect(() => {
 		dispatch(getData({ url: activeDate }));
 	}, [activeDate]);
 	const buildFlightTableBody = (flights) => {
-		return flights[flightDirection].map((flight) => {
+		return flights[flightDirection].filter((flight) => {
 			const scheduledDate = format(Date.parse(flight.timeDepShedule || flight.timeToStand), 'dd-MM-yyyy');
 			let direction = flight['airportToID.city'] || flight['airportFromID.city'];
 			direction = direction.toLowerCase();
 			searchValue = searchValue.toLowerCase();
-			if (scheduledDate === activeDate && !searchValue) {
-				return <FlightTableRow
-					flight={flight}
-					key={flight.ID}
-					activeDate={activeDate}
-				/>;
-			}
-			if (scheduledDate === activeDate && direction.includes(searchValue)) {
-				return <FlightTableRow
-					flight={flight}
-					key={flight.ID}
-					activeDate={activeDate}
-				/>;
-			}
-		});
+			return scheduledDate === activeDate && (!searchValue || direction.includes(searchValue));
+		}).map((flight) => <FlightTableRow
+			flight={flight}
+			activeDate={activeDate}
+			key={flight.ID}/>);
 	};
-	const flightTableBody = flights && buildFlightTableBody(flights);
-	if (isLoading) {
-		return (
-			<Spinner />
-		);
-	}
-	if (isError) {
-		return (
-			<Error />
-		);
-	}
 	return (
-		<div className="wrapper">
-			 <table className="table">
+		(isLoading && <Spinner />)
+		|| (error && <Error text={error.message} />)
+		|| (flights && <div className="wrapper">
+			<table className="table">
 				<thead>
 					<tr>
 						<th>Термінал</th>
@@ -68,10 +50,10 @@ const FlightTable = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{flightTableBody}
+					{buildFlightTableBody(flights).length ? buildFlightTableBody(flights) : <NoFlights />}
 				</tbody>
-			 </table>
-		</div>
+			</table>
+		</div>)
 	);
 };
 export default FlightTable;

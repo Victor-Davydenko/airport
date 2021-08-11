@@ -5,7 +5,7 @@ const useApi = (url, options) => {
 	const [state, setState] = useState({
 		isLoading: false,
 		response: null,
-		isError: null,
+		error: null,
 	});
 	useEffect(() => {
 		const fetchData = async () => {
@@ -27,7 +27,8 @@ const useApi = (url, options) => {
 			} catch (error) {
 				setState({
 					...state,
-					isError: error,
+					isLoading: false,
+					error,
 				});
 			}
 		};
