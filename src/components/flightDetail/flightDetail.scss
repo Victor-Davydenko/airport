@@ -1,0 +1,52 @@
+@import "../../styles/variables";
+
+.flight-details__row {
+    margin-bottom: 25px;
+}
+
+.flight-details__nav-link--flightaware {
+    border-radius: 0 0 60px 0;
+    display: inline-block;
+    width: 220px;
+    height: 50px;
+    padding: 10px 20px 10px 30px;
+    margin-left: 20px;
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.flight-details__text {
+    font-size: 24px;
+}
+
+.flight-details__text--flight {
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.flight-details__city-name {
+    font-size: 70px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+.flight-details__table {
+    thead {
+        color: $darkGrey;
+        font-size: 18px;
+    }
+
+    tbody {
+        font-size: 24px;
+        font-weight: bold;
+    }
+}
+
+.flight-details__summary {
+    font-size: 32px;
+    font-weight: bold;
+}

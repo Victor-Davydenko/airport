@@ -1,11 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import format from 'date-fns/format';
 
 import './flightTable.scss';
 
-const FlightTable = () => {
+import useApi from '../../hooks/useApi';
+import FlightTableRow from './flightTableRow/FlightTableRow';
+import Spinner from '../shared/spinner';
+import Error from '../shared/error';
+import NoFlights from '../noFlights';
+
+const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
+	const { response: flights, isLoading, error } = useApi(activeDate);
+
+	const buildFlightTableBody = (flights) => {
+		return flights[flightDirection].filter((flight) => {
+			const scheduledDate = format(Date.parse(flight.timeDepShedule || flight.timeToStand), 'dd-MM-yyyy');
+			let direction = flight['airportToID.city'] || flight['airportFromID.city'];
+			direction = direction.toLowerCase();
+			searchValue = searchValue.toLowerCase();
+			return scheduledDate === activeDate && (!searchValue || direction.includes(searchValue));
+		}).map((flight) => <FlightTableRow
+			flight={flight}
+			activeDate={activeDate}
+			key={flight.ID}/>);
+	};
 	return (
-		<div className="table-wrapper">
-			 <table className="table">
+		(isLoading && <Spinner />)
+		|| (error && <Error text={error.message} />)
+		|| (flights && <div className="wrapper">
+			<table className="table">
 				<thead>
 					<tr>
 						<th>Термінал</th>
@@ -18,41 +41,10 @@ const FlightTable = () => {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							<span className='terminal'>А</span>
-						</td>
-						<td>2:00</td>
-						<td>Анталія</td>
-						<td>Вилетів о 2:13</td>
-						<td>
-							<img className='image' src="https://api.iev.aero/media/airline/files/5b556bea9e8d9364778468.png" alt=""/>
-							<span className='company'>WizzAir</span>
-						</td>
-						<td>7W9235</td>
-						<td>
-							<a href="" className="table__link">Деталі рейсу</a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span className='terminal'>А</span>
-						</td>
-						<td>2:00</td>
-						<td>Анталія</td>
-						<td>Вилетів о 2:13</td>
-						<td>
-							<span className="image"><img src="" alt=""/></span>
-			        WizzAir
-						</td>
-						<td>7W9235</td>
-						<td>
-							<a href="" className="table__link">Деталі рейсу</a>
-						</td>
-					</tr>
+					{buildFlightTableBody(flights).length ? buildFlightTableBody(flights) : <NoFlights />}
 				</tbody>
-			 </table>
-		</div>
+			</table>
+		</div>)
 	);
 };
 export default FlightTable;

@@ -44,7 +44,7 @@ const FlightFilter = ({
 						<span>Виліт</span>
 					</li>
 					<li className={ classNames(['filter__flights-list-item',
-						flightDirection === 'arrivals' && 'filter__flights-list-item--active']) } onClick={() => setFlightDirection('arrivals')}>
+						flightDirection === 'arrival' && 'filter__flights-list-item--active']) } onClick={() => setFlightDirection('arrival')}>
 						<span>Приліт</span>
 					</li>
 				</ul>

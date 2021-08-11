@@ -6,7 +6,7 @@ import FlightTable from '../../components/flightTable';
 import { today } from '../../constants/constants';
 
 const HomePage = () => {
-	const [flightDirection, setFlightDirection] = useState('arrivals');
+	const [flightDirection, setFlightDirection] = useState('arrival');
 	const [chosenDate, setChosenDate] = useState(today);
 	const [searchValue, setSearchValue] = useState('');
 	const onFormSubmit = (e, searchValue) => {

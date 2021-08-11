@@ -17,6 +17,9 @@
     "no-mixed-spaces-and-tabs": "off",
     "no-underscore-dangle": "off",
     "no-return-await": "off",
-    "no-shadow": "off"
+    "no-shadow": "off",
+    "consistent-return": "off",
+    "no-lonely-if": "off",
+    "no-param-reassign": "off"
   }
 }
