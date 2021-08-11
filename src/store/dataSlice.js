@@ -20,7 +20,7 @@ const dataSlice = createSlice({
 	initialState: {
 		isLoading: false,
 		flightData: null,
-		isError: null,
+		error: null,
 	},
 	reducers: {},
 	extraReducers: {
@@ -33,7 +33,7 @@ const dataSlice = createSlice({
 		},
 		[getData.rejected]: (state, action) => {
 			state.isLoading = false;
-			state.isError = action.error;
+			state.error = action.error;
 		},
 	},
 });
