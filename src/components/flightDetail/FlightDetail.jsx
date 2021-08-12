@@ -5,17 +5,15 @@ import useApi from '../../hooks/useApi';
 import Spinner from '../shared/spinner';
 import Error from '../shared/error';
 import FlightDetailBody from '../flightDetailBody';
-import { getData } from '../../store/dataSlice';
+import { getFlightInfo } from '../../store/dataSlice';
 
 const FlightDetail = ({ id }) => {
 	const url = id.replace('id=', '/');
-	const { isLoading, response: flightInfo, error } = useApi(url);
 	const dispatch = useDispatch();
-	// const { isLoading, flightData: flightInfo, error } = useSelector((state) => state.flightDataReducer);
 	useEffect(() => {
-		dispatch(getData({ url }));
+		dispatch(getFlightInfo({ url }));
 	}, [url]);
-
+	const { isLoading, flightInfo, error } = useSelector((state) => state.flightDataReducer);
 	return (
 		(isLoading && <Spinner />)
 		|| (error && <Error text={error.message} />)
