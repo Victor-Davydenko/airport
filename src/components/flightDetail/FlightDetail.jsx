@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './flightDetail.scss';
-import useApi from '../../hooks/useApi';
 import Spinner from '../shared/spinner';
 import Error from '../shared/error';
 import FlightDetailBody from '../flightDetailBody';

@@ -4,7 +4,6 @@ import format from 'date-fns/format';
 
 import './flightTable.scss';
 
-import useApi from '../../hooks/useApi';
 import { getData } from '../../store/dataSlice';
 import FlightTableRow from './flightTableRow/FlightTableRow';
 import Spinner from '../shared/spinner';
