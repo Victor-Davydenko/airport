@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import format from 'date-fns/format';
 import isToday from 'date-fns/isToday';
 import isYesterday from 'date-fns/isYesterday';
@@ -13,26 +14,26 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './flightFilter.scss';
 import icon from '../../images/dateIcon.png';
 import { today, tomorrow, yesterday } from '../../constants/constants';
+import { setFlightDirection } from '../../store/flightDirectionSlice';
+import { setChosenDate } from '../../store/dateSlice';
 
-const FlightFilter = ({
-	flightDirection,
-	chosenDate,
-	setFlightDirection,
-	setChosenDate,
-}) => {
+const FlightFilter = () => {
+	const flightDirection = useSelector((state) => state.flightDirectionReducer.flightDirection);
+	const chosenDate = useSelector((state) => state.flightDateReducer.chosenDate);
+	const dispatch = useDispatch();
 	const chooseDate = (options) => {
 		const { date, pickedDay } = options;
 		if (date) {
-			setChosenDate(date);
+			dispatch(setChosenDate(date));
 		}
 		if (pickedDay === 'yesterday') {
-			setChosenDate(subDays(today, 1));
+			dispatch(setChosenDate(subDays(today, 1)));
 		}
 		if (pickedDay === 'today') {
-			setChosenDate(today);
+			dispatch(setChosenDate(today));
 		}
 		if (pickedDay === 'tomorrow') {
-			setChosenDate(addDays(today, 1));
+			dispatch(setChosenDate(addDays(today, 1)));
 		}
 	};
 	return (
@@ -40,11 +41,13 @@ const FlightFilter = ({
 			<div className="filter__row">
 				<ul className="filter__flights-list">
 					<li className={ classNames(['filter__flights-list-item',
-						flightDirection === 'departure' && 'filter__flights-list-item--active']) } onClick={() => setFlightDirection('departure')}>
+						flightDirection === 'departure' && 'filter__flights-list-item--active']) }
+					onClick={() => dispatch(setFlightDirection('departure'))}>
 						<span>Виліт</span>
 					</li>
 					<li className={ classNames(['filter__flights-list-item',
-						flightDirection === 'arrival' && 'filter__flights-list-item--active']) } onClick={() => setFlightDirection('arrival')}>
+						flightDirection === 'arrival' && 'filter__flights-list-item--active']) }
+					onClick={() => dispatch(setFlightDirection('arrival'))}>
 						<span>Приліт</span>
 					</li>
 				</ul>

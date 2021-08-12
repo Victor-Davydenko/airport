@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import format from 'date-fns/format';
 
 import './flightTable.scss';
 
-import useApi from '../../hooks/useApi';
+import { getAllFlights } from '../../store/dataSlice';
 import FlightTableRow from './flightTableRow/FlightTableRow';
 import Spinner from '../shared/spinner';
 import Error from '../shared/error';
 import NoFlights from '../noFlights';
 
-const FlightTable = ({ activeDate, flightDirection, searchValue }) => {
-	const { response: flights, isLoading, error } = useApi(activeDate);
-
+const FlightTable = () => {
+	const dispatch = useDispatch();
+	const flightDirection = useSelector((state) => state.flightDirectionReducer.flightDirection);
+	const chosenDate = useSelector((state) => state.flightDateReducer.chosenDate);
+	let searchValue = useSelector((state) => state.searchValueReducer.searchValue);
+	const activeDate = format(chosenDate, 'dd-MM-yyyy');
+	const { isLoading, flightData: flights, error } = useSelector((state) => state.flightDataReducer);
+	useEffect(() => {
+		dispatch(getAllFlights({ url: activeDate }));
+	}, [activeDate]);
 	const buildFlightTableBody = (flights) => {
 		return flights[flightDirection].filter((flight) => {
 			const scheduledDate = format(Date.parse(flight.timeDepShedule || flight.timeToStand), 'dd-MM-yyyy');
