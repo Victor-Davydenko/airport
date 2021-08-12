@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { baseUrl } from '../constants/constants';
 
-export const getData = createAsyncThunk('flightData/getData', async (settings, { rejectWithValue }) => {
+export const getAllFlights = createAsyncThunk('flightData/getAllFlights', async (settings, { rejectWithValue }) => {
 	try {
 		const res = await fetch(`${baseUrl}${settings.url}`, settings.options);
 		if (!res.ok) {
@@ -39,14 +39,14 @@ const dataSlice = createSlice({
 	},
 	reducers: {},
 	extraReducers: {
-		[getData.pending]: (state) => {
+		[getAllFlights.pending]: (state) => {
 			state.isLoading = true;
 		},
-		[getData.fulfilled]: (state, action) => {
+		[getAllFlights.fulfilled]: (state, action) => {
 			state.isLoading = false;
 			state.flightData = action.payload;
 		},
-		[getData.rejected]: (state, action) => {
+		[getAllFlights.rejected]: (state, action) => {
 			state.isLoading = false;
 			state.error = action.error;
 		},

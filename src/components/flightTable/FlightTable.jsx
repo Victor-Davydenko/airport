@@ -4,7 +4,7 @@ import format from 'date-fns/format';
 
 import './flightTable.scss';
 
-import { getData } from '../../store/dataSlice';
+import { getAllFlights } from '../../store/dataSlice';
 import FlightTableRow from './flightTableRow/FlightTableRow';
 import Spinner from '../shared/spinner';
 import Error from '../shared/error';
@@ -18,7 +18,7 @@ const FlightTable = () => {
 	const activeDate = format(chosenDate, 'dd-MM-yyyy');
 	const { isLoading, flightData: flights, error } = useSelector((state) => state.flightDataReducer);
 	useEffect(() => {
-		dispatch(getData({ url: activeDate }));
+		dispatch(getAllFlights({ url: activeDate }));
 	}, [activeDate]);
 	const buildFlightTableBody = (flights) => {
 		return flights[flightDirection].filter((flight) => {
