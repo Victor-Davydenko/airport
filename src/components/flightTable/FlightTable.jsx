@@ -20,14 +20,18 @@ const FlightTable = () => {
 	useEffect(() => {
 		dispatch(getAllFlights({ url: activeDate }));
 	}, [activeDate]);
-	const buildFlightTableBody = (flights) => {
+	const filterFlights = (flights) => {
 		return flights[flightDirection].filter((flight) => {
 			const scheduledDate = format(Date.parse(flight.timeDepShedule || flight.timeToStand), 'dd-MM-yyyy');
 			let direction = flight['airportToID.city'] || flight['airportFromID.city'];
 			direction = direction.toLowerCase();
 			searchValue = searchValue.toLowerCase();
 			return scheduledDate === activeDate && (!searchValue || direction.includes(searchValue));
-		}).map((flight) => <FlightTableRow
+		});
+	};
+	const filteredFlights = flights && filterFlights(flights);
+	const buildFlightTableBody = (flights) => {
+		return flights.map((flight) => <FlightTableRow
 			flight={flight}
 			activeDate={activeDate}
 			key={flight.ID}/>);
@@ -49,7 +53,7 @@ const FlightTable = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{buildFlightTableBody(flights).length ? buildFlightTableBody(flights) : <NoFlights />}
+					{filteredFlights.length ? buildFlightTableBody(filteredFlights) : <NoFlights />}
 				</tbody>
 			</table>
 		</div>)
