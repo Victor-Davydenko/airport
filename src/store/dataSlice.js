@@ -1,28 +1,37 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 import { baseUrl } from '../constants/constants';
 
+const instance = axios.create({
+	baseURL: baseUrl,
+});
+const setError = (res) => {
+	if (Math.floor(res.status / 100) !== 2) {
+		console.log(res.status);
+	}
+	return res;
+};
+
+const interceptors = (axios) => {
+	axios.interceptors.response.use(setError);
+};
+
+interceptors(instance);
 export const getAllFlights = createAsyncThunk('flightData/getAllFlights', async (settings, { rejectWithValue }) => {
-	try {
-		const res = await fetch(`${baseUrl}${settings.url}`, settings.options);
-		if (!res.ok) {
-			throw new Error('Something went wrong');
-		}
-		const json = await res.json();
-		return json.body;
+	const res = await instance.get(settings.url, settings.options);
+	if (Math.floor(res.status / 100) !== 2) {
+		rejectWithValue(new Error('wrong something'));
 	}
-	catch (e) {
-		return rejectWithValue(e);
-	}
+	return res.data.body;
 });
 
 export const getFlightInfo = createAsyncThunk('flightData/getFlightInfo', async (settings, { rejectWithValue }) => {
 	try {
-		const res = await fetch(`${baseUrl}${settings.url}`, settings.options);
-		if (!res.ok) {
+		const res = await instance.get(settings.url, settings.options);
+		if (Math.floor(res.status / 100) !== 2) {
 			throw new Error('Something went wrong');
 		}
-		const json = await res.json();
-		return json.body;
+		return res.data.body;
 	}
 	catch (e) {
 		return rejectWithValue(e);
